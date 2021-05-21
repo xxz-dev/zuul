@@ -175,7 +175,7 @@ public class Debug {
             String prefix = isInbound ? "RESPONSE_INBOUND" : "RESPONSE_OUTBOUND";
             String arrow = "<";
 
-            Debug.addRequestDebug(context, String.format("%s:: %s STATUS: %s", prefix, arrow, response.getStatus()));
+            Debug.addRequestDebug(context, String.format("%s:: %s STATUS: %d", prefix, arrow, response.getStatus()));
             obs = Debug.writeDebugMessage(context, response, prefix, arrow);
         }
 
