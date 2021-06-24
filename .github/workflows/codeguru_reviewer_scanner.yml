@@ -74,7 +74,7 @@ jobs:
       uses: aws-actions/codeguru-reviewer@v1.1
       with:
         build_path: target # build artifact(s) directory
-        s3_bucket: codeguru-reviewer-github-xxz-test  # S3 Bucket with "codeguru-reviewer-*" prefix
+        s3_bucket: codeguru-reviewer-github-xxz-test-iad  # S3 Bucket with "codeguru-reviewer-*" prefix
 
     - name: Upload review result
       if: ${{ always() }}
