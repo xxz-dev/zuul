@@ -129,46 +129,6 @@ public class DebugTest {
     }
 
     @Test
-    public void testWriteInboundResponseDebug() {
-        ctx.setDebugRequest(true);
-        ctx.setDebugRequestHeadersOnly(true);
-        Debug.writeDebugResponse(ctx, response, true).toBlocking().single();
-
-        List<String> debugLines = getRequestDebug(ctx);
-        Truth.assertThat(debugLines).containsExactly(
-                "RESPONSE_INBOUND:: < STATUS: 200",
-                "RESPONSE_INBOUND:: < HDR: Content-Length:13",
-                "RESPONSE_INBOUND:: < HDR: lah:deda");
-    }
-
-    @Test
-    public void testWriteOutboundResponseDebug() {
-        ctx.setDebugRequest(true);
-        ctx.setDebugRequestHeadersOnly(true);
-        Debug.writeDebugResponse(ctx, response, false).toBlocking().single();
-
-        List<String> debugLines = getRequestDebug(ctx);
-        Truth.assertThat(debugLines).containsExactly(
-                "RESPONSE_OUTBOUND:: < STATUS: 200",
-                "RESPONSE_OUTBOUND:: < HDR: Content-Length:13",
-                "RESPONSE_OUTBOUND:: < HDR: lah:deda");
-    }
-
-    @Test
-    public void testWriteResponseDebug_WithBody() {
-        ctx.setDebugRequest(true);
-        ctx.setDebugRequestHeadersOnly(false);
-        Debug.writeDebugResponse(ctx, response, true).toBlocking().single();
-
-        List<String> debugLines = getRequestDebug(ctx);
-        Truth.assertThat(debugLines).containsExactly(
-                "RESPONSE_INBOUND:: < STATUS: 200",
-                "RESPONSE_INBOUND:: < HDR: Content-Length:13",
-                "RESPONSE_INBOUND:: < HDR: lah:deda",
-                "RESPONSE_INBOUND:: < BODY: response text");
-    }
-
-    @Test
     public void testNoCMEWhenComparingContexts() {
         final SessionContext context = new SessionContext();
         final SessionContext copy = new SessionContext();
